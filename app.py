@@ -48,9 +48,6 @@ def getID():
 
 # write function that finds streaming services
 
-
-
-
 # Testing
 if __name__ == "__main__":
     print(getID())
