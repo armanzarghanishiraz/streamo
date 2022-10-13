@@ -44,10 +44,42 @@ def getID():
     for movies in response.json()['title_results']:
         output.append(movies['id'])
 
-    return(output)
+    return(output[0])
 
 # write function that finds streaming services
+
+
+def getServices(title_ID):
+    response = requests.get(f"https://api.watchmode.com/v1/title/{title_ID}/sources/?apiKey={api_key}")
+    # print(response.json())
+    
+    output = []
+    for services in response.json():
+        output.append(services['name'])
+
+    return(set(output))
+
+# gets urls
+def getURLS(title_ID):
+    response = requests.get(f"https://api.watchmode.com/v1/title/{title_ID}/sources/?apiKey={api_key}")
+    # print(response.json())
+    
+    output = []
+    for services in response.json():
+        output.append(services['web_url'])
+
+    return(set(output))
+
+
+# combines getIDs and getServices output
+# def processSources():
+    
+
+
+
 
 # Testing
 if __name__ == "__main__":
     print(getID())
+    print(getServices(getID()))
+    print(getURLS(getID()))
