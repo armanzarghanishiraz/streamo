@@ -1,1 +1,7 @@
-this could be a story about making a search for a movie/tv show
+The user wants to watch a new show they've heard about, but don't know what streaming services the show is on.
+They know they can find this out through the app "Streamo," so they navigate to the site via their browser.
+A prompt to search for their show allows them to type in the name and select it from the drop-down menu that live reacts to typed-in words.
+Let's say the user dowesn't remember the name of their show very well: they will need to find the name as exactly as they can (perhaps via search browser or word-of-mouth) to narrow down their Streamo search.
+After finding and clicking on the show, the user is presented with links to every streaming service that is currently hosting the show.
+After searching for their preferred streaming service, the user clicks on the streaming service icon and is redirected to the streaming service in a separate window.
+The user can then log in with their site credentials and watch their show.

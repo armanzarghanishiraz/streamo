@@ -1,1 +1,7 @@
-this could be a story about creating an account/logging in through google
+After using Streamo to find a streaming service that hosts the shoe they want to watch, the user wants to create an account on our web app to save their streaming service log-in data.
+This will eliminate the need to log in to their chosen service after searching for a show and being redirected to the service.
+The user clicks on the "sign up" button in the top-right corner of our homepage.
+They are prompted to connect their google account to Streamo.
+If the user does not have a google account to connect, they need to create one externally.
+The user logs in to their google account via our sign-up page and is now logged in.
+Streamo will now keep track of the user's log-in info for streaming services.
