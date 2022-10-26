@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <SearchBar placeholder={"Enter movie name"} data={MovieData}/>
+      <SearchBar placeholder={"Enter movie name"} data={MovieData}/>
     </div>
   );
 }
