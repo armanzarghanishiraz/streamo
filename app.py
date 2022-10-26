@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+from ordered_set import OrderedSet
 
 '''
 #import requests
@@ -63,7 +64,7 @@ def getServices(title_ID):
         output.append(services['name'])
 
     # return(set(output))
-    return(output)
+    return(OrderedSet(output))
 
 # gets urls
 def getURLS(title_ID):
@@ -79,7 +80,7 @@ def getURLS(title_ID):
         output.append(services['web_url'])
 
     # return(set(output))
-    return(output)
+    return(OrderedSet(output))
 
 
 # combines getServices and getURLs output to make a set that has name-link pairs
@@ -99,8 +100,8 @@ def processSources(title_ID):
 
 # Testing
 if __name__ == "__main__":
-    print(getID())
-    print(getServices(getID()))
-    print(getURLS(getID()))
+    # print(getID())
+    # print(getServices(getID()))
+    # print(getURLS(getID()))
     print("this is where processSources starts")
     print(processSources(getID()))
