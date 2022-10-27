@@ -1,0 +1,3 @@
+The user wants to get recommendations based on the streaming services he is subscribed to.
+Through his streamo account he will be able to select which ones he has access to: Netflix, disney plus. 
+Streamo then only recommends stuff based on these 2 platforms and doesn't give recommendations from hulu.
