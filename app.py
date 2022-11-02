@@ -1,7 +1,9 @@
+from flask import Flask, current_app, jsonify
 import requests
 from dotenv import load_dotenv
 import os
 from ordered_set import OrderedSet
+import json
 
 '''
 #import requests
@@ -34,8 +36,8 @@ def myEnvironment():
 
 #print(f"my api key is {api_key}")
 
-if __name__ == "__main__":
-    myEnvironment()
+# if __name__ == "__main__":
+#     myEnvironment()
 
 def getID():
     '''
@@ -87,21 +89,32 @@ def getURLS(title_ID):
 def processSources(title_ID):
     keys = getServices(title_ID)
     values = getURLS(title_ID)
-    dict = {}
+    output = {}
     for i in range(len(keys)):
-        dict[keys[i]] = values[i]
+        output[keys[i]] = values[i]
 
-    return dict
-    #NOW we need to figure out how to turn this output into a set
+    return jsonify(output)
     
 
 
-
+# Flask testing
+def app_context():
+    app = Flask(__name__)
+    with app.app_context():
+        # print(processSources(getID()))
+        @app.route('/Sources/', methods=['GET', 'POST'])
+        def welcome():
+            response = processSources(getID())
+            response.headers.add('Access-Control-Allow-Origin', '*')
+            return response
+        app.run(host='0.0.0.0', port=2999)
 
 # Testing
 if __name__ == "__main__":
     # print(getID())
     # print(getServices(getID()))
     # print(getURLS(getID()))
-    print("this is where processSources starts")
-    print(processSources(getID()))
+    # print("this is where processSources starts")
+    # print(processSources(getID()))
+    app_context()
+    
