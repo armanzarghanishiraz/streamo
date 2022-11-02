@@ -1,0 +1,5 @@
+User story for when program is not in the system
+
+The user will use the search prompt to type in the name of the program and options will become available in the drop down as they type. One they finish entering the program and enter search, a page that says " program not available" (or something similar) will pop up. Below it, it will say "here are some popular watches" which will then list the most watched genres and the top 10 movies in that genre. 
+
+If the user clicks on one of the shows listed, the app will prompt them to the page with links to every streaming service hosting the show. Everything after will proceed like how it would if the user found the program with the first search. 

@@ -1,0 +1,4 @@
+When the user access to the application, they can see trending shows/movies from popular streaming services in the Home Page screen. 
+Once they clink on a show/movie, the screen will navigate to the SignUp/SignIn screen that requires the users to log in. 
+For example, if the user click on a trending show which is being presented on Netflix, they will be required to log in with their site credentials. 
+When the user successfully signs in, they can watch the show.
