@@ -42,9 +42,14 @@ function App() {
 
   return (
     <div className="App">
-      {movies['iTunes']}
       <SearchBar placeholder={"Enter movie name"} data={MovieData}/>
-      <SearchBar placeholder={"Enter movie name"} data={MovieData}/>
+      {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
+      {console.log(movies)}
+      {/* {movies['iTunes']}
+      {movies['VUDU']} */}
+      {JSON.stringify(movies)}
+      {/* wrong: */}
+      {/* {JSON.parse(movies)} */}
     </div>
   );
 }

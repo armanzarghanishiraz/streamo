@@ -1,4 +1,4 @@
-from flask import Flask, current_app, jsonify
+from flask import Flask, current_app, jsonify, redirect, url_for, render_template
 import requests
 from dotenv import load_dotenv
 import os
@@ -6,26 +6,9 @@ from ordered_set import OrderedSet
 import json
 
 '''
-#import requests
-
-def get_data()
-    response = requests.get("insert querty")
-    api_key = 'am5FlyMQOTybvoxxryFtkswWcNv8oADZKACwViSN'
-    {"authorization": api_key})
-
-    res = []
-
-    for p in response.jason()['photos']:
-        res.append(p['src']['original'])
-
-    print(res)
-
+this is where i started writing the POST() code.  right everything before load_dotenc()
 '''
-# import urllib.request
-# import json
-# with urllib.request.urlopen("https://api.watchmode.com/v1/search/?apiKey=am5FlyMQOTybvoxxryFtkswWcNv8oADZKACwViSN&search_field=name&search_value=Ed%20Wood") as url:
-#     data = json.loads(url.read().decode())
-#     print(data)
+
 
 load_dotenv()
 
@@ -43,7 +26,7 @@ def getID():
     '''
         gets movie ID by searching by name
     '''
-    #response = requests.get('https://api.watchmode.com/v1/search/?apiKey=am5FlyMQOTybvoxxryFtkswWcNv8oADZKACwViSN&search_field=name&search_value=Back%20to%20the%20Future')
+
     response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value=Back%20to%20the%20Future")
 
     output = []
