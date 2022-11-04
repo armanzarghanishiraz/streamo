@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import './SearchBar.css';
 import SearchIcon from '@mui/icons-material/Search';
 
+// sending data back to server using POST()
+
+
 function SearchBar({placeholder, data}) {
+
 
 
     const [filteredData, setFilteredData] = useState([]);

@@ -22,12 +22,13 @@ def myEnvironment():
 # if __name__ == "__main__":
 #     myEnvironment()
 
-def getID():
+def getID(movie_name):
     '''
         gets movie ID by searching by name
     '''
 
-    response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value=Back%20to%20the%20Future")
+    # response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value=Back%20to%20the%20Future")
+    response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value={movie_name}")
 
     output = []
     for movies in response.json()['title_results']:
@@ -87,10 +88,11 @@ def app_context():
         # print(processSources(getID()))
         @app.route('/Sources/', methods=['GET', 'POST'])
         def welcome():
-            response = processSources(getID())
+            response = processSources(getID("fast"))
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
         app.run(host='0.0.0.0', port=2999)
+
 
 # Testing
 if __name__ == "__main__":

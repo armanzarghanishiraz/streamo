@@ -32,7 +32,6 @@ function useMovies() {
 
 
 
-
 function App() {
   const movies = useMovies();
 
