@@ -4,32 +4,50 @@ import SearchIcon from '@mui/icons-material/Search';
 
 // sending data back to server using POST()
 
+ 
+function SearchBar({placeholder, setSearchWord, handleClick}){
 
-function SearchBar({placeholder, data}) {
-
-
-
-    const [filteredData, setFilteredData] = useState([]);
+    // const [filteredData, setFilteredData] = useState([]);
+    const [filteredData] = useState([]);
 
     const handleFilter = (event) => {
-        const searchWord = event.target.value;
-        const newFilter = data.filter((value) => {
-            return value.Title.toLowerCase().includes(searchWord.toLowerCase());
-    });
 
-    if (searchWord == "") {
-        setFilteredData([]);
-    } else {
-        setFilteredData(newFilter);
-    }
+
+        const searchWord = event.target.value;
+        setSearchWord(searchWord);
+        // const newFilter = data.filter((value) => {
+        //     const output_string = value.Title.toLowerCase().includes(searchWord.toLowerCase());
+
+
+    // if (searchWord == "") {
+    //     setFilteredData([]);
+    // } else {
+    //     setFilteredData(newFilter);
+    // }
+
+        return searchWord
     };
 
+    // post request
+    // const params = {
+    //     param1: handleFilter 
+    // };
+    // const options = {
+    //     method: 'POST',
+    //     body: JSON.stringify( params )  
+    // };
+    // fetch( 'http://0.0.0.0:2999/Sources/', options )
+    //     .then( response => response.json() )
+    //     .then( response => {
+    //         // Do something with response.
+    //     } );
 
     return(
         <div className="search">
             <div className="searchInputs">
                 <input type="text" placeholder={placeholder} onChange={handleFilter}/>
-                <div className="searchIcon">
+                <div onClick={handleClick} className="searchIcon">
+                    
                     <SearchIcon/>
                 </div>
             </div>
@@ -46,6 +64,7 @@ function SearchBar({placeholder, data}) {
             )}
         </div>
     );
+
 }
 
 export default SearchBar;

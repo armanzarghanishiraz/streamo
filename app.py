@@ -1,4 +1,4 @@
-from flask import Flask, current_app, jsonify, redirect, url_for, render_template
+from flask import Flask, current_app, jsonify, redirect, url_for, render_template, request
 import requests
 from dotenv import load_dotenv
 import os
@@ -86,12 +86,16 @@ def app_context():
     app = Flask(__name__)
     with app.app_context():
         # print(processSources(getID()))
-        @app.route('/Sources/', methods=['GET', 'POST'])
-        def welcome():
-            response = processSources(getID("fast"))
+        @app.route('/GetStreamingServices/', methods=['POST'])
+        # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
+        def GetStreamingServices():
+            print(request.form.get('movieName'))
+            movie_name = request.form.get('movieName')
+            response = processSources(getID(movie_name))
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
-        app.run(host='0.0.0.0', port=2999)
+
+    app.run(host='0.0.0.0', port=2999)
 
 
 # Testing
