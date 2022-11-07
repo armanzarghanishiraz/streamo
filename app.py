@@ -5,10 +5,6 @@ import os
 from ordered_set import OrderedSet
 import json
 
-'''
-this is where i started writing the POST() code.  right everything before load_dotenc()
-'''
-
 
 load_dotenv()
 
@@ -84,6 +80,7 @@ def processSources(title_ID):
 # Flask testing
 def app_context():
     app = Flask(__name__)
+    app.run(port=5000, debug=True)
     with app.app_context():
         # print(processSources(getID()))
         @app.route('/GetStreamingServices/', methods=['POST'])
@@ -95,7 +92,7 @@ def app_context():
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
 
-    app.run(host='0.0.0.0', port=2999)
+    # app.run(host='0.0.0.0', port=2999)
 
 
 # Testing

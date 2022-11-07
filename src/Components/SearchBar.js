@@ -12,7 +12,7 @@ function SearchBar({placeholder, setSearchWord, handleClick}){
 
     const handleFilter = (event) => {
 
-
+        // calls setSearchWord() on the inputted word
         const searchWord = event.target.value;
         setSearchWord(searchWord);
         // const newFilter = data.filter((value) => {
@@ -46,6 +46,7 @@ function SearchBar({placeholder, setSearchWord, handleClick}){
         <div className="search">
             <div className="searchInputs">
                 <input type="text" placeholder={placeholder} onChange={handleFilter}/>
+                {/* when search bar is clicked, call handleclick function */}
                 <div onClick={handleClick} className="searchIcon">
                     
                     <SearchIcon/>

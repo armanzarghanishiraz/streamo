@@ -14,6 +14,9 @@ function toJSON(response) {
 
 async function getServices(movie_name) {
 
+  // input is the string from the search bar
+
+  // basic post request syntax to push moviename string to the flask server
   const params = {
       movieName: movie_name
   };
@@ -21,16 +24,20 @@ async function getServices(movie_name) {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify( params ), 
+      // cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json'
       }
   };
-  const response = fetch( 'http://0.0.0.0:2999/GetStreamingServices/', options )
+  // console.log("got prior to fetch")
+  const response = fetch( '/GetStreamingServices/', options )
+  // const response = fetch( 'http://0.0.0.0:2999/GetStreamingServices/', options )
+      //THIS CAUSED THE ERROR
       .then( response => response.json() )
-      // .then( response => {
-      //     // Do something with response.
-          
-      // });
+      .then( response => {
+          // Do something with response.
+          console.log("this is response:" + response)
+      });
 
   return response;
 }
@@ -50,15 +57,17 @@ function useMovies() {
 function App() {
 
   const [services, setServices] = useState(undefined);
-  console.log(services)
+  console.log("these are services: " + services)
 
   const [word, setSearchWord] = useState(undefined);
-  console.log(word)
+  console.log("this is word: " + word)
 
+  // called when searchbar icon is clicked, and calls getServices on the input string
   const handleClick = () => {
     console.log("clicked")
-    console.log(word)
+    console.log("this is word 2: " + word)
     getServices(word).then((services) => setServices(services));
+    // console.log("getServices suvvessful")
   }
 
   // const movies = useMovies();
