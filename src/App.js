@@ -34,6 +34,7 @@ async function getServices(movie_name) {
   // const response = fetch( 'http://0.0.0.0:2999/GetStreamingServices/', options )
       //THIS CAUSED THE ERROR
       .then( response => response.json() )
+      // console.log("this is response type: " + typeof response)
       .then( response => {
           // Do something with response.
           console.log("this is response:" + response)

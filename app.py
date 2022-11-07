@@ -80,7 +80,7 @@ def processSources(title_ID):
 # Flask testing
 def app_context():
     app = Flask(__name__)
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=False)
     with app.app_context():
         # print(processSources(getID()))
         @app.route('/GetStreamingServices/', methods=['POST'])
