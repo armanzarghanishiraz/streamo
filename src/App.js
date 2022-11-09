@@ -23,10 +23,12 @@ async function getServices(movie_name) {
   const options = {
       method: 'POST',
       mode: 'cors',
-      body: JSON.stringify( params ), 
+      // body: JSON.stringify( params ),
+      body: params, 
       // cache: 'no-cache',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
   };
   // console.log("got prior to fetch")

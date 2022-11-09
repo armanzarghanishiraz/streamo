@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from ordered_set import OrderedSet
 import json
+from flask_cors import CORS
 
 
 load_dotenv()
@@ -80,7 +81,8 @@ def processSources(title_ID):
 # Flask testing
 def app_context():
     app = Flask(__name__)
-    app.run(port=5000, debug=False)
+    CORS(app)
+    app.run(port=5000, debug=False, threaded=True)
     with app.app_context():
         # print(processSources(getID()))
         @app.route('/GetStreamingServices/', methods=['POST'])
@@ -91,6 +93,8 @@ def app_context():
             response = processSources(getID(movie_name))
             response.headers.add('Access-Control-Allow-Origin', '*')
             return response
+    # app.run(port=5000, debug=False)
+
 
     # app.run(host='0.0.0.0', port=2999)
 
