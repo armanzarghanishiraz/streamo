@@ -24,7 +24,7 @@ async function getServices(movie_name) {
       method: 'POST',
       mode: 'cors',
       // body: JSON.stringify( params ),
-      body: params, 
+      body: JSON.stringify( params ), 
       // cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',

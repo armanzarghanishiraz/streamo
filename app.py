@@ -78,33 +78,48 @@ def processSources(title_ID):
     
 
 
-# Flask testing
-def app_context():
-    app = Flask(__name__)
-    CORS(app)
-    app.run(port=5000, debug=False, threaded=True)
-    with app.app_context():
-        # print(processSources(getID()))
-        @app.route('/GetStreamingServices/', methods=['POST'])
-        # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
-        def GetStreamingServices():
-            print(request.form.get('movieName'))
-            movie_name = request.form.get('movieName')
-            response = processSources(getID(movie_name))
-            response.headers.add('Access-Control-Allow-Origin', '*')
-            return response
-    # app.run(port=5000, debug=False)
+# # Flask testing
+# def app_context():
+#     app = Flask(__name__)
+#     CORS(app)
+#     app.run(port=5000, debug=False, threaded=True)
+#     with app.app_context():
+#         # print(processSources(getID()))
+#         @app.route('/GetStreamingServices/', methods=['POST'])
+#         # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
+#         def GetStreamingServices():
+#             print(request.form.get('movieName'))
+#             movie_name = request.form.get('movieName')
+#             response = processSources(getID(movie_name))
+#             response.headers.add('Access-Control-Allow-Origin', '*')
+#             return response
+#     # app.run(port=5000, debug=False)
 
 
     # app.run(host='0.0.0.0', port=2999)
 
+# WHAT WILL ACTUALLY GET FLASK TO WORK:
+app = Flask(__name__)
+CORS(app)
+# app.run(port=5111, debug=False, threaded=True)
+# print(processSources(getID()))
+@app.route('/GetStreamingServices/', methods=['POST'])
+        # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
+def GetStreamingServices():
+    print(request.form.get('movieName'))
+    movie_name = request.form.get('movieName')
+    response = processSources(getID(movie_name))
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+    # app.run(port=5000, debug=False)
+
 
 # Testing
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # print(getID())
     # print(getServices(getID()))
     # print(getURLS(getID()))
     # print("this is where processSources starts")
     # print(processSources(getID()))
-    app_context()
+    # app_context()
     
