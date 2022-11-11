@@ -31,6 +31,8 @@ def getID(movie_name):
     for movies in response.json()['title_results']:
         output.append(movies['id'])
 
+    # print("this is movie name: ", movie_name)
+
     return(output[0])
 
 
@@ -41,12 +43,15 @@ def getServices(title_ID):
     '''
     response = requests.get(f"https://api.watchmode.com/v1/title/{title_ID}/sources/?apiKey={api_key}")
     # print(response.json())
+
+    # print("this is the ID: ", title_ID)
     
     output = []
     for services in response.json():
         output.append(services['name'])
 
     # return(set(output))
+    # print("this is the output", output)
     return(OrderedSet(output))
 
 # gets urls
@@ -63,6 +68,7 @@ def getURLS(title_ID):
         output.append(services['web_url'])
 
     # return(set(output))
+    # print("these are the links", output)
     return(OrderedSet(output))
 
 
@@ -106,7 +112,7 @@ CORS(app)
 @app.route('/GetStreamingServices/', methods=['POST', 'GET'])
         # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
 def GetStreamingServices():
-    print(request.form.get('movieName'))
+    print("this is movie name from client-side", request.form.get('movieName'))
     movie_name = request.form.get('movieName')
     response = processSources(getID(movie_name))
     response.headers.add('Access-Control-Allow-Origin', '*')
