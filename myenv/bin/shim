@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-export NODE_PATH='/Volumes/SSD/cs_411/project/project_v1/myenv/lib/node_modules'
-export NPM_CONFIG_PREFIX='/Volumes/SSD/cs_411/project/project_v1/myenv'
-export npm_config_prefix='/Volumes/SSD/cs_411/project/project_v1/myenv'
-exec '/Volumes/SSD/cs_411/project/project_v1/myenv/bin/node' "$@"
