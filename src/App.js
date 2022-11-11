@@ -23,7 +23,7 @@ async function getServices(movie_name) {
   const options = {
       method: 'POST',
       mode: 'cors',
-      // body: JSON.stringify( params ),
+      // body: params,
       body: JSON.stringify( params ), 
       // cache: 'no-cache',
       headers: {
@@ -34,6 +34,7 @@ async function getServices(movie_name) {
   // console.log("got prior to fetch")
   const response = fetch( '/GetStreamingServices/', options )
   // const response = fetch( 'http://0.0.0.0:2999/GetStreamingServices/', options )
+  // console.log("got after fetch")
       //THIS CAUSED THE ERROR
       .then( response => response.json() )
       // console.log("this is response type: " + typeof response)

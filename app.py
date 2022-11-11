@@ -103,7 +103,7 @@ app = Flask(__name__)
 CORS(app)
 # app.run(port=5111, debug=False, threaded=True)
 # print(processSources(getID()))
-@app.route('/GetStreamingServices/', methods=['POST'])
+@app.route('/GetStreamingServices/', methods=['POST', 'GET'])
         # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
 def GetStreamingServices():
     print(request.form.get('movieName'))
