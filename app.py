@@ -5,6 +5,7 @@ import os
 from ordered_set import OrderedSet
 import json
 from flask_cors import CORS
+from flask import send_from_directory
 
 
 load_dotenv()
@@ -107,6 +108,7 @@ def processSources(title_ID):
 # WHAT WILL ACTUALLY GET FLASK TO WORK:
 app = Flask(__name__)
 CORS(app)
+app.debug = True
 # app.run(port=5111, debug=False, threaded=True)
 # print(processSources(getID()))
 @app.route('/GetStreamingServices/', methods=['POST', 'GET'])
@@ -114,10 +116,15 @@ CORS(app)
 def GetStreamingServices():
     print("this is movie name from client-side", request.form.get('movieName'))
     movie_name = request.form.get('movieName')
+    print("this is the id for finding nemo: ", getID("finding nemo"))
     response = processSources(getID(movie_name))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
     # app.run(port=5000, debug=False)
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
 
 # Testing
