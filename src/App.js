@@ -18,7 +18,7 @@ async function getServices(movie_name) {
 
   // basic post request syntax to push moviename string to the flask server
   const params = {
-      "movieName": "movie_name"
+      movieName: movie_name
   };
   console.log("the movie_name within the getservices function is " + params['movieName'])
   const options = {
@@ -34,18 +34,19 @@ async function getServices(movie_name) {
         'Access-Control-Allow-Origin': '*'
       }
   };
+  // console.log("options: " + options)
   // console.log("got prior to fetch")
   // const response = fetch( '/GetStreamingServices/', options.movieName )
   const response = fetch("http://127.0.0.1:5000/GetStreamingServices/", options )
   // console.log("got after fetch")
       //THIS CAUSED THE ERROR
-      // .then( response => response.json() )
+      .then( response => response.json() )
       // console.log("this is response type: " + typeof response)
       // .then( response => {
       //     // Do something with response.
       //     console.log("this is response:" + response.text())
       // });
-      .then(response => response.text())
+      // .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
 

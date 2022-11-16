@@ -6,11 +6,13 @@ from ordered_set import OrderedSet
 import json
 from flask_cors import CORS
 from flask import send_from_directory
+from werkzeug.datastructures import ImmutableMultiDict
 
 
 load_dotenv()
 
-api_key = os.getenv("API_KEY")
+# api_key = os.getenv("API_KEY")
+api_key = "i6vygkT8W8KZXg9CpT24pK2GoyNLb3jo4KbrXPGp"
 
 def myEnvironment():
     print(f'My id is: {api_key}.')
@@ -28,6 +30,8 @@ def getID(movie_name):
     # response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value=Back%20to%20the%20Future")
     response = requests.get(f"https://api.watchmode.com/v1/search/?apiKey={api_key}&search_field=name&search_value={movie_name}")
 
+    print("api response: ", response)
+    # print(f"api key: {api_key}")
     output = []
     for movies in response.json()['title_results']:
         output.append(movies['id'])
@@ -115,9 +119,18 @@ app.debug = True
         # @app.route('/GetStreamingServices/', methods=['GET', 'POST'])
 def GetStreamingServices():
     print("this is movie name from client-side", request.form.get('movieName'))
+    # movie_name = request.form["movieName"]
     movie_name = request.form.get('movieName')
+    # moviejson = request.get_json()
+    # print("this is moviejson: ", moviejson['movieName'])
+    # request_form = request.form.getlist('movieName')
+    request_form = (list(request.form.to_dict().keys())[0]).replace("{\"movieName\":\"","")
+    request_form = request_form.replace("\"}","")
+    # request_form = request.form
+    print("this is request_form: ",request_form)
     print("this is the id for finding nemo: ", getID("finding nemo"))
-    response = processSources(getID(movie_name))
+    # response = processSources(getID(movie_name))
+    response = processSources(getID(request_form))
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
     # app.run(port=5000, debug=False)
