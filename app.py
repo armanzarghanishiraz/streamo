@@ -126,7 +126,7 @@ def GetStreamingServices():
     # request_form = request.form.getlist('movieName')
     request_form = (list(request.form.to_dict().keys())[0]).replace("{\"movieName\":\"","")
     request_form = request_form.replace("\"}","")
-    # request_form = request.form
+    # request_form = request.form.to_dict()
     print("this is request_form: ",request_form)
     print("this is the id for finding nemo: ", getID("finding nemo"))
     # response = processSources(getID(movie_name))
