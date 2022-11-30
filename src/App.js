@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import './App.css';
 import SearchBar from './Components/SearchBar.js';
 import MovieData from './Data.json';
+import NavBar from './Components/NavBar.js'
+
 // import axios from "axios";
 
 function toJSON(response) {
@@ -89,15 +91,20 @@ function App() {
   // }
 
   return (
-    <div className="App">
-      <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
-      {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
-      {/* {console.log(movies)} */}
-      {/* {movies['iTunes']}
-      {movies['VUDU']} */}
-      {/* {JSON.stringify(movies)} */}
-      {/* wrong: */}
-      {/* {JSON.parse(movies)} */}
+    <div>
+      <header>
+        <NavBar/>     
+      </header>
+      <div className="App">
+        <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
+        {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
+        {/* {console.log(movies)} */}
+        {/* {movies['iTunes']}
+        {movies['VUDU']} */}
+        {/* {JSON.stringify(movies)} */}
+        {/* wrong: */}
+        {/* {JSON.parse(movies)} */}
+      </div>
     </div>
   );
 }
