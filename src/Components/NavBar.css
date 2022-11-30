@@ -1,0 +1,43 @@
+.NavBar {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #5265c4;
+}
+
+.NavBar > .nav-logo {
+    font-weight: 700;
+    font-size: 21px;
+    margin: 15px;
+    color: #fff;
+}
+
+
+.NavBar > .nav-items > a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    margin: 15px;
+    position: relative;
+    opacity: 0.9;
+}
+
+.NavBar > .nav-items > a:hover {
+    opacity: 1;
+}
+
+.NavBar > .nav-items > a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: all .45s;
+}
+
+.NavBar > .nav-items > a:hover::before {
+    width: 100%;
+}
