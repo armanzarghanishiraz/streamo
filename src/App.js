@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import SearchBar from './Components/SearchBar.js';
+import Logo from './Components/Logo.js';
 import MovieData from './Data.json';
-import NavBar from './Components/NavBar.js'
+import NavBar from './Components/NavBar.js';
 
 // import axios from "axios";
 
@@ -96,6 +97,7 @@ function App() {
         <NavBar/>     
       </header>
       <div className="App">
+        <Logo />
         <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
         {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
         {/* {console.log(movies)} */}
