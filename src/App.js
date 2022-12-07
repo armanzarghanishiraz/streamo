@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
+import { gapi } from 'gapi-script'
 import SearchBar from './Components/SearchBar.js';
-import Logo from './Components/Logo.js';
 import MovieData from './Data.json';
 import NavBar from './Components/NavBar.js';
-
+import SignIn from './Components/SignIn.js';
+import Register from './Components/Register.js';
 // import axios from "axios";
+
+const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
 
 function toJSON(response) {
   return response.json();
@@ -91,14 +94,35 @@ function App() {
   //   return <div>loading....</div>
   // }
 
+  let component 
+  switch (window.location.pathname) {
+    case "/":
+      component = <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
+      break
+    case "/sign-in":
+      component = <SignIn />
+      break
+    case "/register":
+      component = <Register />
+      break
+  }
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: client_id,
+        scope: ""
+      })
+    };
+    gapi.load('client:auth2', start);
+  });
+
   return (
     <div>
-      <header>
-        <NavBar/>     
-      </header>
-      <div className="App">
-        <Logo />
-        <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
+      <NavBar/>
+      <div className="App">{component}</div>
+      {/* <div className="App">
+        <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/> */}
         {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
         {/* {console.log(movies)} */}
         {/* {movies['iTunes']}
@@ -106,7 +130,7 @@ function App() {
         {/* {JSON.stringify(movies)} */}
         {/* wrong: */}
         {/* {JSON.parse(movies)} */}
-      </div>
+      {/* </div> */}
     </div>
   );
 }
