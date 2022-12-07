@@ -7,9 +7,8 @@
 }
 
 .NavBar > .nav-logo {
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 21px;
     margin: 15px;
     color: #fff;
 }
