@@ -53,28 +53,42 @@ async function getServices(movie_name) {
       //     console.log("this is response:" + response.text())
       // });
       // .then(response => response.text())
-      .then(result => console.log(result))
+      // .then(result => console.log(result))
       .catch(error => console.log('error', error));
 
   return response;
 }
 
 // load movies from server
-function useMovies() {
-  const [movies, setMovies] = useState(undefined);
+// function useMovies() {
+//   const [movies, setMovies] = useState(undefined);
 
-  useEffect(() => {
-    getServices().then((movies) => setMovies(movies));
-  }, []);
+//   useEffect(() => {
+//     getServices().then((movies) => setMovies(movies));
+//   }, []);
 
-  return movies;
+//   return movies;
+// }
+
+async function getTopMovies() {
+
+  return fetch('http://127.0.0.1:5000/TopTenMovies/')
+  .then(data => {
+  return data.json();
+  })
+  // .then(data => {
+  // console.log("this is data.json: " + data);
+  // });
+
 }
 
 
 function App() {
 
   const [services, setServices] = useState(undefined);
-  console.log("these are services: " + services)
+  console.log("these are services: " + JSON.stringify(services))
+
+  const [topMovies, setTopMovies] = useState(undefined);
 
   const [word, setSearchWord] = useState(undefined);
   console.log("this is word: " + word)
@@ -84,7 +98,15 @@ function App() {
     console.log("clicked")
     console.log("this is word 2: " + word)
     getServices(word).then((services) => setServices(services));
-    console.log("this is getServices(word): ", getServices(word))
+    // console.log("this is getServices(word): ", getServices(word))
+    // console.log("getServices suvvessful")
+  }
+
+  const handleChange = () => {
+    console.log("changed")
+    // console.log("this is word 2: " + word)
+    getTopMovies().then((topMovies) => setTopMovies(topMovies));
+    console.log("this is getTopMovies(): ", getTopMovies())
     // console.log("getServices suvvessful")
   }
 
@@ -97,7 +119,7 @@ function App() {
   let component 
   switch (window.location.pathname) {
     case "/":
-      component = <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/>
+      component = <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick} handleChange={handleChange} topMovies={topMovies}/>
       break
     case "/sign-in":
       component = <SignIn />
@@ -119,10 +141,12 @@ function App() {
 
   return (
     <div>
+      <header>
       <NavBar/>
+      </header>
       <div className="App">{component}</div>
-      {/* <div className="App">
-        <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick}/> */}
+      {/* <Logo /> */}
+        <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick} handleChange={handleChange} topMovies={topMovies}/>
         {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
         {/* {console.log(movies)} */}
         {/* {movies['iTunes']}
@@ -130,7 +154,12 @@ function App() {
         {/* {JSON.stringify(movies)} */}
         {/* wrong: */}
         {/* {JSON.parse(movies)} */}
-      {/* </div> */}
+        { services && Object.keys(services).map(function(key) { return (<div key={key}>
+          <a href={services[key]} target="_blank" >{key}</a>
+        </div>); })}
+        {/* {topMovies && Object.keys(topMovies).map(function(key) {return (<div key={key}>
+        {topMovies[key]}
+      </div>); })} */}
     </div>
   );
 }

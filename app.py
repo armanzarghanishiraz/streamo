@@ -12,7 +12,8 @@ from werkzeug.datastructures import ImmutableMultiDict
 load_dotenv()
 
 # api_key = os.getenv("API_KEY")
-api_key = "i6vygkT8W8KZXg9CpT24pK2GoyNLb3jo4KbrXPGp"
+# api_key = "i6vygkT8W8KZXg9CpT24pK2GoyNLb3jo4KbrXPGp"
+api_key = "1haKCy3biK2wcxK6kHBUCGaukTPOD4sxdJA9XInD"
 
 def myEnvironment():
     print(f'My id is: {api_key}.')
@@ -86,6 +87,29 @@ def processSources(title_ID):
         output[keys[i]] = values[i]
 
     return jsonify(output)
+
+def topTen():
+    url = "https://imdb-top-100-movies.p.rapidapi.com/premiummovies"
+
+    headers = {
+        # "X-RapidAPI-Key": "fb3e52ccb7msh67a182eeea10bfdp1c3905jsnb62553d9b660",
+        # 'X-RapidAPI-Key': '78faf03e11msh60ed96fe67610bap1c7a78jsn3fc4fee8c02c',
+        "X-RapidAPI-Key": "079cd9ec66mshbf124b748b69b68p159b74jsne029d70393b8",
+        "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+
+    # print("this is response: ", response.json())
+
+    output = []
+    for movie in response.json():
+        # print("this is movie: ", movie)
+        output.append(movie['title'])
+
+    # print(response.text)
+
+    return jsonify(output[0:10])
     
 
 
@@ -139,6 +163,10 @@ def GetStreamingServices():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),'favicon.ico',mimetype='image/vnd.microsoft.icon')
 
+@app.route('/TopTenMovies/', methods=['POST','GET'])
+def TopTenMovies():
+    print("these are the top 100 movies of all time: ", topTen())
+    return topTen()
 
 # Testing
 # if __name__ == "__main__":

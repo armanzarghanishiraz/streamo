@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 // sending data back to server using POST()
 
  
-function SearchBar({placeholder, setSearchWord, handleClick}){
+function SearchBar({placeholder, setSearchWord, handleClick, handleChange, topMovies}){
 
     // const [filteredData, setFilteredData] = useState([]);
     const [filteredData] = useState([]);
@@ -45,24 +45,19 @@ function SearchBar({placeholder, setSearchWord, handleClick}){
     return(
         <div className="search">
             <div className="searchInputs">
-                <input type="text" placeholder={placeholder} onChange={handleFilter}/>
+                {/* when search bar is changed, call handleChange function */}
+                <input type="text" placeholder={placeholder} onMouseDown={handleChange} onChange={handleFilter}/>
                 {/* when search bar is clicked, call handleclick function */}
                 <div onClick={handleClick} className="searchIcon">
                     
                     <SearchIcon/>
                 </div>
             </div>
-            { filteredData.length !== 0 && (
-            <div className="dataResult">
-                {filteredData.slice(0,15).map((value, key) =>{
-                    return (
-                    <a className = "dataItem" href="value.link" target="_blank"> 
-                        <p>{value.Title}</p>
-                    </a>
-                );
-                })}
+            <div className="dataResult" >
+                <div> {topMovies && Object.keys(topMovies).map(function(key) {return (<div key={key}>
+                {topMovies[key]}
+                </div>); })} </div>
             </div>
-            )}
         </div>
     );
 
