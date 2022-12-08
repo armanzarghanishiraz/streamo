@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
 import "./SignIn.css";
 
 const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
@@ -22,13 +21,6 @@ const SignIn = () => {
         console.log('[Login failed] res:', res);
     }
 
-    const responseFacebook = (res) => {
-        console.log(res);
-    }
-
-    const componentClicked = (data) => {
-        console.warn(data)
-    }
 
     return (
         <>
@@ -49,16 +41,6 @@ const SignIn = () => {
                     onFailure={onFailure}
                     cookiePolicy={'single_host_origin'}
                     isSignedIn={true}
-                />
-            </div>
-
-            <div id="signInButton">
-                <FacebookLogin
-                    appId="653900109792612"
-                    autoLoad={true}
-                    fields="name,email,picture"
-                    onClick={componentClicked}
-                    callback={responseFacebook} 
                 />
             </div>
         </>
