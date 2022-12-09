@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
-import { gapi } from 'gapi-script'
+import { gapi } from 'gapi-script';
 import HomePage from './Components/HomePage.js';
 import MovieData from './Data.json';
 import NavBar from './Components/NavBar.js';
@@ -31,7 +31,7 @@ function App() {
       gapi.client.init({
         clientId: client_id,
         scope: ""
-      })
+      }) 
     };
     gapi.load('client:auth2', start);
   });
@@ -42,18 +42,6 @@ function App() {
       <NavBar/>
       </header>
       <div className="App">{component}</div>
-      {/* <Logo /> */}
-        {/* <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick} handleChange={handleChange} topMovies={topMovies}/> */}
-        {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
-        {/* {console.log(movies)} */}
-        {/* {movies['iTunes']}
-        {movies['VUDU']} */}
-        {/* {JSON.stringify(movies)} */}
-        {/* wrong: */}
-        {/* {JSON.parse(movies)} */}
-        {/* {topMovies && Object.keys(topMovies).map(function(key) {return (<div key={key}>
-        {topMovies[key]}
-      </div>); })} */}
     </div>
   );
 }
