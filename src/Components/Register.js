@@ -6,6 +6,8 @@ const Register = () => {
     const [pass, setPass] = useState('');
     const [name, setName] = useState('');
 
+    const [registerStatus, setRegisterStatus] = useState('');
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
@@ -13,7 +15,13 @@ const Register = () => {
 
     const database = () => {
         Axios.post("http://localhost:3001/register", {name: name, email: email, pass: pass}).then((response) => {
-            console.log(response);
+
+            if (response.data.message) {
+                setRegisterStatus("You successfully registered an account!")
+            } else {    
+                console.log(response);
+                setRegisterStatus("User already existed!")
+            }
         });
     }
 
@@ -35,6 +43,9 @@ const Register = () => {
                 </div>
                 <button className="register-button" onClick={database} type="submit"> Register </button>
             </form>
+            <h1 className="status">
+                {registerStatus}
+            </h1>
             <div>
                 <button className="sign-in"> 
                     <a href="/sign-in"> Already have an account? Sign in here! </a>
@@ -45,4 +56,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;

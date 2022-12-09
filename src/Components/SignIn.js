@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { GoogleLogin } from 'react-google-login';
 import "./SignIn.css";
 import { gapi } from 'gapi-script';
-import jwt_decode from 'jwt-decode';
 import Axios from 'axios';
 
 const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
