@@ -23,8 +23,17 @@ app.post('/register', (req,res) => {
 
     db.query(
         "INSERT INTO registration (name, email, pass) VALUES (?, ?, ?)", 
-        [req.body.name, req.body.email, req.body.pass], (err, result) => {
-            console.log(err);
+        [req.body.name, req.body.email, req.body.pass], 
+        (err, result) => {
+            if (err) {
+                res.send({err: err})
+            } 
+            if (result.length > 0) {
+                res.send(result)
+                res.send(result)
+            } else {
+                res.send({message: "User already exists!"})
+            }
         }
     )
 })
@@ -45,7 +54,7 @@ app.post('/sign-in', (req, res) => {
             if (result.length > 0) {
                 res.send(result)
             } else {
-                res.send({message: "Wrong email/password combination"})
+                res.send({message: "Wrong email/password combination!"})
             }
         }
     )
