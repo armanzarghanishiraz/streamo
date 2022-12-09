@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import SearchIcon from '@mui/icons-material/Search';
-
+import Axios from "axios";
 // sending data back to server using POST()
 
  
@@ -17,7 +17,6 @@ function SearchBar({placeholder, setSearchWord, handleClick, handleChange, topMo
         setSearchWord(searchWord);
         // const newFilter = data.filter((value) => {
         //     const output_string = value.Title.toLowerCase().includes(searchWord.toLowerCase());
-
 
     // if (searchWord == "") {
     //     setFilteredData([]);
@@ -41,12 +40,17 @@ function SearchBar({placeholder, setSearchWord, handleClick, handleChange, topMo
     //     .then( response => {
     //         // Do something with response.
     //     } );
+    // const [movieName, setMovieName] = useState("");
+
+    // const movie_search = () => {
+    //     Axios.post("http://localhost:3001/api/insert", {movieName: movieName}).then(() => { alert("succesfull search"); });
+    // }
 
     return(
         <div className="search">
             <div className="searchInputs">
                 {/* when search bar is changed, call handleChange function */}
-                <input type="text" placeholder={placeholder} onMouseDown={handleChange} onChange={handleFilter}/>
+                <input type="text" placeholder={placeholder} onMouseDown={handleChange} onChange={(handleFilter)}/>
                 {/* when search bar is clicked, call handleclick function */}
                 <div onClick={handleClick} className="searchIcon">
                     

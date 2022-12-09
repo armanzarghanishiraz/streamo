@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import SearchBar from './SearchBar.js';
 import MovieData from '../Data.json';
 
-// import axios from "axios";
-
 const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
 
 function toJSON(response) {
   return response.json();
 }
-  
+ 
+
 // const api = axios.create({
 //   baseURL: `baseURL placeholder`
 // })

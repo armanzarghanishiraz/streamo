@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { GoogleLogin } from 'react-google-login';
 import "./SignIn.css";
+import Axios from 'axios';
 
 const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+
+    const [signinStatus, setSigninStatus] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +24,18 @@ const SignIn = () => {
         console.log('[Login failed] res:', res);
     }
 
+    const database = () => {
+        Axios.post("http://localhost:3001/sign-in", {email: email, pass: pass}).then((response) => {
+
+            if (response.data.message) {
+                setSigninStatus(response.data.message)
+            } else {    
+                console.log(response);
+                setSigninStatus(response.data[0].name)
+            }
+
+        });
+    }
 
     return (
         <>
@@ -29,10 +44,17 @@ const SignIn = () => {
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email address" placeholder="Enter your email" id="email" name="email"/>
                 <label htmlFor="password">Password</label>
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
-                <button type="submit"> Sign In </button>
+                <button onClick={database}> Sign In </button>
+                
             </form>
-            <button> Don't have an account? Register here! </button>
+            <button> 
+                <a href="/register"> Don't have an account? Register here! </a>
+            </button>
             
+            <h1>
+                {signinStatus}
+            </h1>
+
             <div id="signInButton">
                 <GoogleLogin
                     clientId={client_id}
