@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoogleLogin } from 'react-google-login';
 import "./SignIn.css";
+import { gapi } from 'gapi-script';
+import jwt_decode from 'jwt-decode';
 import Axios from 'axios';
 
 const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
@@ -31,31 +33,38 @@ const SignIn = () => {
                 setSigninStatus(response.data.message)
             } else {    
                 console.log(response);
-                setSigninStatus(response.data[0].name)
+                setSigninStatus("Hello " + response.data[0].name + "!")
             }
 
         });
     }
 
     return (
-        <>
+        <div className="Sign-in">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="Email Address">Email Address </label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email address" placeholder="Enter your email" id="email" name="email"/>
-                <label htmlFor="password">Password</label>
-                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
-                <button onClick={database}> Sign In </button>
+                <div className="email">
+                    <label htmlFor="Email Address">Email Address </label>
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email address" placeholder="Enter your email" id="email" name="email"/>
+                </div>
+
+                <div className="password">
+                    <label htmlFor="password">Password </label>
+                    <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
+                </div>
+                <div>
+                    <button className="signin-button" onClick={database}> Sign In </button>
+                </div>
                 
             </form>
-            <button> 
+            <h1 className="status">
+                {signinStatus}
+            </h1>
+            <button className="register"> 
                 <a href="/register"> Don't have an account? Register here! </a>
             </button>
             
-            <h1>
-                {signinStatus}
-            </h1>
 
-            <div id="signInButton">
+            <div className="google" id="signInButton">
                 <GoogleLogin
                     clientId={client_id}
                     buttonText="Sign in with Google"
@@ -65,8 +74,8 @@ const SignIn = () => {
                     isSignedIn={true}
                 />
             </div>
-        </>
+        </div>
     )
 }
 
-export default SignIn
+export default SignIn;

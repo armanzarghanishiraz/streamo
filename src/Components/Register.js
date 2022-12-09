@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Axios from 'axios';
-
+import './Register.css'
 const Register = () => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -18,23 +18,30 @@ const Register = () => {
     }
 
     return (
-        <>
+        <div className="Register">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name"> Full Name </label>
-                <input value={name} onChange={(e) => setName(e.target.value)} type="full name" name="name" id='name' placeholder="Your Full Name" />
-                <label htmlFor="Email Address">Email Address </label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email address" placeholder="Enter your email" id="email" name="email"/>
-                <label htmlFor="password">Password</label>
-                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
-                <button onClick={database} type="submit"> Register </button>
+                <div className="name">
+                    <label htmlFor="name"> Full Name </label>
+                    <input value={name} onChange={(e) => setName(e.target.value)} type="full name" name="name" id='name' placeholder="Enter your full name" />
+                </div>
+                <div className="email">
+                    <label htmlFor="Email Address">Email Address </label> 
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email address" placeholder="Enter your email" id="email" name="email"/>
+                </div>
+
+                <div className="password">
+                    <label htmlFor="password">Password </label>
+                    <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password"/>
+                </div>
+                <button className="register-button" onClick={database} type="submit"> Register </button>
             </form>
             <div>
-                <button> 
+                <button className="sign-in"> 
                     <a href="/sign-in"> Already have an account? Sign in here! </a>
                 </button>
                 
             </div>
-        </>
+        </div>
     )
 }
 

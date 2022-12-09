@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from './SearchBar.js';
 import MovieData from '../Data.json';
-
-const client_id = "260793162332-qs0b099qv6t4o9rl0qnosoql662j3ak6.apps.googleusercontent.com"
+import Logo from './Logo.js'
+import './HomePage.css';
 
 function toJSON(response) {
   return response.json();
@@ -108,7 +108,7 @@ function HomePage() {
 
   return (
     <div>
-      {/* <Logo /> */}
+      <Logo />
         <SearchBar placeholder={"Enter movie name"} setSearchWord={setSearchWord} handleClick={handleClick} handleChange={handleChange} topMovies={topMovies}/>
         {/* <SearchBar placeholder={"Enter movie name"} data={MovieData}/> */}
         {/* {console.log(movies)} */}
@@ -117,9 +117,11 @@ function HomePage() {
         {/* {JSON.stringify(movies)} */}
         {/* wrong: */}
         {/* {JSON.parse(movies)} */}
-        { services && Object.keys(services).map(function(key) { return (<div key={key}>
-          <a href={services[key]} target="_blank" >{key}</a>
-        </div>); })}
+        { services && Object.keys(services).map(function(key) { 
+          return (
+            <div className="key" >
+              <a href={services[key]} target="_blank" >{key}</a>
+            </div>); })}
         {/* {topMovies && Object.keys(topMovies).map(function(key) {return (<div key={key}>
         {topMovies[key]}
       </div>); })} */}

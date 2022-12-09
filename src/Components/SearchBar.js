@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import SearchIcon from '@mui/icons-material/Search';
-import Axios from "axios";
 // sending data back to server using POST()
 
  
