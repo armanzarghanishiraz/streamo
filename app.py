@@ -11,10 +11,6 @@ from werkzeug.datastructures import ImmutableMultiDict
 
 load_dotenv()
 
-# api_key = os.getenv("API_KEY")
-# api_key = "i6vygkT8W8KZXg9CpT24pK2GoyNLb3jo4KbrXPGp"
-api_key = "1haKCy3biK2wcxK6kHBUCGaukTPOD4sxdJA9XInD"
-
 def myEnvironment():
     print(f'My id is: {api_key}.')
 
@@ -92,9 +88,6 @@ def topTen():
     url = "https://imdb-top-100-movies.p.rapidapi.com/premiummovies"
 
     headers = {
-        # "X-RapidAPI-Key": "fb3e52ccb7msh67a182eeea10bfdp1c3905jsnb62553d9b660",
-        # 'X-RapidAPI-Key': '78faf03e11msh60ed96fe67610bap1c7a78jsn3fc4fee8c02c',
-        "X-RapidAPI-Key": "079cd9ec66mshbf124b748b69b68p159b74jsne029d70393b8",
         "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com"
     }
 
