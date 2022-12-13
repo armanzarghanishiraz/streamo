@@ -1,4 +1,4 @@
-## Lab B3 Team 2
+## Lab B3 Team 2 - CS411 Final Project
 
 ## Members:
 - AlHasan Bahaidarah (hasan73@bu.edu)
