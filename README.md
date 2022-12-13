@@ -11,6 +11,7 @@
 1. In terminal 1, we set flask debugger = 1 and run:
 
 `export FLASK_DEBUG=1`
+
 `flask run`
 
 2. In terminal 2, run:
